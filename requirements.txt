@@ -106,7 +106,7 @@ seaborn==0.9.1
 Send2Trash==1.5.0
 simplegeneric==0.8.1
 six==1.14.0
-TBB==0.1
+
 tensorboard==1.10.0
 tensorflow==1.10.0
 tensorflow-hub==0.8.0
