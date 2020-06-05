@@ -1,1 +1,1 @@
-web: gunicorn rcds:rcds_app
+web: gunicorn rcds:rcds
