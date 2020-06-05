@@ -4,7 +4,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from settings import *
 from utils import *
-import cv2
+from cv2 import imread,resize,IMREAD_GRAYSCALE,CAP_PROP_POS_MSEC, VideoCapture,imwrite
 import numpy as np
 import os
 import shutil
@@ -86,8 +86,8 @@ def make_prediction():
             path = os.path.join(PROJECT_PATH,file_path) 
             model=create_model()
             model.load('./crack_detection_model')
-            img=cv2.imread(path,cv2.IMREAD_GRAYSCALE)
-            img = cv2.resize(img, (IMG_SIZE, IMG_SIZE)) 
+            img=imread(path,IMREAD_GRAYSCALE)
+            img = resize(img, (IMG_SIZE, IMG_SIZE)) 
             orig = np.array(img)
             data = orig.reshape(IMG_SIZE, IMG_SIZE, 1) 
             model_out = model.predict([data])[0]
@@ -116,8 +116,8 @@ def make_prediction():
             for img in os.listdir(VID_T0_IMG_FOLDER):
       
                 path="./static/uploaded_videos/images/"+img
-                img=cv2.imread(path,cv2.IMREAD_GRAYSCALE)
-                img = cv2.resize(img, (IMG_SIZE, IMG_SIZE)) 
+                img=imread(path,IMREAD_GRAYSCALE)
+                img = resize(img, (IMG_SIZE, IMG_SIZE)) 
                 orig = np.array(img)
                 data = orig.reshape(IMG_SIZE, IMG_SIZE, 1) 
                 model_out = model.predict([data])[0]
@@ -127,7 +127,7 @@ def make_prediction():
                 else: 
                     str_label ='Uncracked'
                 
-            cv2.imwrite("./static/temp/temp.png",cv2.imread(path))
+            imwrite("./static/temp/temp.png",imread(path))
             path_temp="./static/temp/temp.png"
             shutil.rmtree(VID_T0_IMG_FOLDER)
             value=False
@@ -170,12 +170,12 @@ def save_video(file,filename):
 def process_video(path):
     if not os.path.exists("./static/uploaded_videos/images/"):
         os.makedirs("./static/uploaded_videos/images/")
-    vidcap = cv2.VideoCapture(path)
+    vidcap = VideoCapture(path)
     def getFrame(sec):
-        vidcap.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
+        vidcap.set(CAP_PROP_POS_MSEC,sec*1000)
         hasFrames,image = vidcap.read()
         if hasFrames:
-            cv2.imwrite("static/uploaded_videos/images/image"+str(count)+".jpg", image)     # save frame as JPG file
+            imwrite("static/uploaded_videos/images/image"+str(count)+".jpg", image)     # save frame as JPG file
         return hasFrames
     sec = 0
     frameRate = 2 #//it will capture image in each 2 seconds

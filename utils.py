@@ -1,7 +1,7 @@
 from settings import *
 import numpy as np
 import tflearn
-import cv2
+
 import os
 from tflearn.layers.conv import conv_2d, max_pool_2d 
 from tflearn.layers.core import input_data, dropout, fully_connected 
@@ -38,26 +38,7 @@ def create_model():
     model = tflearn.DNN(convnet, tensorboard_dir ='log') 
     return model
 
-def process_video(path):
-    if not os.path.exists("./static/uploaded_videos/images/"):
-        os.makedirs("./static/uploaded_videos/images/")
-    vidcap = cv2.VideoCapture(path)
-    def getFrame(sec):
-        vidcap.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
-        hasFrames,image = vidcap.read()
-        if hasFrames:
-            cv2.imwrite("static/uploaded_videos/images/image"+str(count)+".jpg", image)     # save frame as JPG file
-        return hasFrames
-    sec = 0
-    frameRate = 2 #//it will capture image in each 2 seconds
-    count=1
-    success = getFrame(sec)
-    while success:
-        count = count + 1
-        sec = sec + frameRate
-        sec = round(sec, 2)
-        success = getFrame(sec)
-    return 
+
 def send_sms():
     from twilio.rest import Client
     client=Client(ACC_SID,AUTH_TOKEN)
