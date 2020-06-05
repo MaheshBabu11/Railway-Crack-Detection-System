@@ -74,4 +74,4 @@ wcwidth==0.1.9
 webencodings==0.5.1
 Werkzeug==1.0.1
 wkhtmltopdf==0.2
-opencv-python==3.4.1
+opencv-python==3.4.1.15
