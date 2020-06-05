@@ -1,1 +1,0 @@
-web: gunicorn rcds.py:rcds_app
