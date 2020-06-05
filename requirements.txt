@@ -95,10 +95,6 @@ pyparsing==2.4.7
 python-dateutil==2.8.1
 pyttsx3==2.87
 pytz==2020.1
-PyWavelets==1.1.1
-pywin32==227
-pywin32-ctypes==0.2.0
-pywinpty==0.5.4
 PyYAML==3.13
 pyzmq==19.0.0
 requests==2.23.0
