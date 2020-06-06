@@ -130,10 +130,10 @@ def make_prediction():
                 
             imwrite("./static/temp/temp.png",imread(path))
             path_temp="./static/temp/temp.png"
-            mypath = "./static/shots"
-            for root, dirs, files in os.walk(mypath):
-                for file in files:
-                    os.remove(os.path.join(root, file))
+##            mypath = "./static/shots"
+##            for root, dirs, files in os.walk(mypath):
+##                for file in files:
+##                    os.remove(os.path.join(root, file))
             
             value=False
             
