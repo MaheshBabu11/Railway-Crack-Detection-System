@@ -115,7 +115,7 @@ def make_prediction():
             
             for img in os.listdir(VID_T0_IMG_FOLDER):
       
-                path="./static/uploaded_videos/images/"+img
+                path="./static/shots/"+img
                 img=imread(path,IMREAD_GRAYSCALE)
                 img = resize(img, (IMG_SIZE, IMG_SIZE)) 
                 orig = np.array(img)
@@ -123,13 +123,18 @@ def make_prediction():
                 model_out = model.predict([data])[0]
                 if np.argmax(model_out) == 1: 
                     str_label ='Cracked'
+                    break
                         
                 else: 
                     str_label ='Uncracked'
                 
             imwrite("./static/temp/temp.png",imread(path))
             path_temp="./static/temp/temp.png"
-            shutil.rmtree(VID_T0_IMG_FOLDER)
+            mypath = "./static/shots"
+            for root, dirs, files in os.walk(mypath):
+                for file in files:
+                    os.remove(os.path.join(root, file))
+            
             value=False
             
             if str_label == 'Cracked':
@@ -168,14 +173,12 @@ def save_video(file,filename):
     return file_path
 
 def process_video(path):
-    if not os.path.exists("./static/uploaded_videos/images/"):
-        os.makedirs("./static/uploaded_videos/images/")
     vidcap = VideoCapture(path)
     def getFrame(sec):
         vidcap.set(CAP_PROP_POS_MSEC,sec*1000)
         hasFrames,image = vidcap.read()
         if hasFrames:
-            imwrite("static/uploaded_videos/images/image"+str(count)+".jpg", image)     # save frame as JPG file
+            imwrite("static/shots/image"+str(count)+".jpg", image)     # save frame as JPG file
         return hasFrames
     sec = 0
     frameRate = 2 #//it will capture image in each 2 seconds

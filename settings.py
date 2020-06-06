@@ -4,7 +4,7 @@ IMG_SIZE = 50
 LR = 1e-3
 UPLOAD_IMAGE_FOLDER = 'static/uploaded_images'
 UPLOAD_VIDEO_FOLDER = 'static/uploaded_videos'
-VID_T0_IMG_FOLDER = 'static/uploaded_videos/images'
+VID_T0_IMG_FOLDER = 'static/shots'
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 IS_DEBUG = True
