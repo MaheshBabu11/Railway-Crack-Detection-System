@@ -59,7 +59,7 @@ Send2Trash==1.5.0
 simplegeneric==0.8.1
 six==1.14.0
 tensorboard==1.10.0
-tensorflow==1.10.0
+tensorflow==1.15.2
 tensorflow-hub==0.8.0
 termcolor==1.1.0
 terminado==0.8.1
