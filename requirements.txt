@@ -50,7 +50,7 @@ pyparsing==2.4.7
 python-dateutil==2.8.1
 pyttsx3==2.87
 pytz==2020.1
-PyYAML==3.13
+PyYAML==5.1
 pyzmq==19.0.0
 requests==2.23.0
 rsa==4.0
