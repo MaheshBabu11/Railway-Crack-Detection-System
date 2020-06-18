@@ -1,2 +1,1 @@
-*.py     text diff=python
-static/* linguist-vendored
+*.rb linguist-language=python
